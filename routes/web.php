@@ -8,8 +8,10 @@ use App\Http\Controllers\Admin\LoginController;
 Route::get('admin/login', [LoginController::class, 'index'])->name('admin.login');
 Route::post('admin/login', [LoginController::class, 'authenticate'])->name('admin.login.auth');
 
-Route::group(['prefix' => 'admin'], function() {
+Route::group(['prefix' => 'admin', 'middleware' => ['admin.auth']], function() {
     Route::view('/', 'admin.dashboard')->name('admin.dashboard');
+
+    Route::get('logout', [LoginController::class,'logout'])->name('admin.logout');
 
     Route::get('transaction', [TransactionController::class, 'index'])->name('admin.transaction');
  
@@ -22,6 +24,8 @@ Route::group(['prefix' => 'admin'], function() {
         Route::delete('/destroy/{id}', [MovieController::class, 'destroy'])->name('admin.movie.destroy');
     });
 });
+
+Route::view('/', 'index');
 
 
 // Route::get('/', function () {
