@@ -90,7 +90,7 @@
                 Everything you need to entertain yourself and <br class="hidden lg:block" />
                 your family from anywhere you are
             </p>
-            <a href="sign_up.html" class="mt-5 rounded-full bg-indigo-600 text-center py-3 px-11">
+            <a href="{{ route('member.register') }}" class="mt-5 rounded-full bg-indigo-600 text-center py-3 px-11">
                 <span class="text-white font-semibold text-base">Get Started</span>
             </a>
         </section>
