@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\TransactionController;
 use App\Http\Controllers\Admin\LoginController;
 
 use App\Http\Controllers\Member\RegisterController;
+use App\Http\Controllers\Member\LoginController as MemberLoginController;
 
 Route::get('admin/login', [LoginController::class, 'index'])->name('admin.login');
 Route::post('admin/login', [LoginController::class, 'authenticate'])->name('admin.login.auth');
@@ -31,3 +32,6 @@ Route::view('/', 'index');
 
 Route::get('/register', [RegisterController::class, 'index'])->name('member.register');
 Route::post('/register', [RegisterController::class, 'store'])->name('member.register.store');
+
+Route::get('/login', [MemberLoginController::class, 'index'])->name('member.login');
+Route::post('/login', [MemberLoginController::class, 'auth'])->name('member.login.auth');
