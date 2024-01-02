@@ -8,17 +8,20 @@ use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Member\RegisterController;
 use App\Http\Controllers\Member\LoginController as MemberLoginController;
 
+use App\Http\Controllers\Member\DashboardController;
+
+
 Route::get('admin/login', [LoginController::class, 'index'])->name('admin.login');
 Route::post('admin/login', [LoginController::class, 'authenticate'])->name('admin.login.auth');
 
-Route::group(['prefix' => 'admin', 'middleware' => ['admin.auth']], function() {
+Route::group(['prefix' => 'admin', 'middleware' => ['admin.auth']], function () {
     Route::view('/', 'admin.dashboard')->name('admin.dashboard');
 
-    Route::get('logout', [LoginController::class,'logout'])->name('admin.logout');
+    Route::get('logout', [LoginController::class, 'logout'])->name('admin.logout');
 
     Route::get('transaction', [TransactionController::class, 'index'])->name('admin.transaction');
- 
-    Route::group(['prefix' => 'movie'], function() {
+
+    Route::group(['prefix' => 'movie'], function () {
         Route::get('/', [MovieController::class, 'index'])->name('admin.movie');
         Route::get('/create', [MovieController::class, 'create'])->name('admin.movie.create');
         Route::post('/store', [MovieController::class, 'store'])->name('admin.movie.store');
@@ -35,3 +38,7 @@ Route::post('/register', [RegisterController::class, 'store'])->name('member.reg
 
 Route::get('/login', [MemberLoginController::class, 'index'])->name('member.login');
 Route::post('/login', [MemberLoginController::class, 'auth'])->name('member.login.auth');
+
+Route::group(['prefix' => 'member'], function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('member.dasboard');
+});
