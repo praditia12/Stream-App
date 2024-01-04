@@ -9,6 +9,8 @@ use App\Http\Controllers\Member\RegisterController;
 use App\Http\Controllers\Member\LoginController as MemberLoginController;
 
 use App\Http\Controllers\Member\DashboardController;
+use App\Http\Controllers\Member\MovieController as MemberMovieController;
+
 
 
 Route::get('admin/login', [LoginController::class, 'index'])->name('admin.login');
@@ -39,6 +41,8 @@ Route::post('/register', [RegisterController::class, 'store'])->name('member.reg
 Route::get('/login', [MemberLoginController::class, 'index'])->name('member.login');
 Route::post('/login', [MemberLoginController::class, 'auth'])->name('member.login.auth');
 
-Route::group(['prefix' => 'member'], function () {
+Route::group(['prefix' => 'member', 'middleware' => ['auth']], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('member.dasboard');
+
+    Route::get('movie/{id}', [MemberMovieController::class, 'show'])->name('member.movie.detail');
 });
