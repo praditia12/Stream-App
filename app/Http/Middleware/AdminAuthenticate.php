@@ -19,10 +19,10 @@ class AdminAuthenticate
     {
         $user = Auth::user();
 
-        if ($user) {
+        if ($user && $user->role === 'admin') {
             return $next($request);
         }
-        
-        return redirect()->route('admin.login');
+
+        return redirect()->route('admin.login')->with('error', 'Unauthorized access');
     }
 }
