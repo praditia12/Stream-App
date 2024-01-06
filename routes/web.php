@@ -44,5 +44,7 @@ Route::post('/login', [MemberLoginController::class, 'auth'])->name('member.logi
 Route::group(['prefix' => 'member', 'middleware' => ['auth']], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('member.dasboard');
 
+    Route::get('logout', [MemberLoginController::class, 'logout'])->name('member.logout');
+
     Route::get('movie/{id}', [MemberMovieController::class, 'show'])->name('member.movie.detail');
 });
