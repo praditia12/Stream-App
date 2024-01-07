@@ -14,13 +14,13 @@
 
     <script src="{{ asset('stream/assets/script/tailwind-config.js') }}"></script>
     <style type="text/tailwindcss">
-        @layer components{
+        @layer components {
             .nav-link-item {
                 @apply py-3 font-normal text-stream-gray transition-all cursor-pointer lg:py-0 hover:text-white;
             }
         }
 
-        .frame-video{
+        .frame-video {
             @apply rounded-[28px];
             filter: drop-shadow(0px 32px 52px rgba(140, 135, 162, 0.18))
         }
@@ -63,7 +63,7 @@
                         <div class="flex flex-col w-full font-normal lg:w-auto lg:gap-12 lg:items-center lg:flex-row">
                             <a href="#!" class="nav-link-item">Genre</a>
                             <a href="#!" class="nav-link-item">Featured</a>
-                            <a href="pricing.html" class="nav-link-item">Pricing</a>
+                            <a href="{{ route('pricing') }}" class="nav-link-item">Pricing</a>
                         </div>
                         <a href="/" class="hidden lg:block -ml-36">
                             <img src="{{ asset('stream/assets/images/stream.svg') }}" alt="stream" />
@@ -98,10 +98,14 @@
         <section class="px-4 relative max-w-[950px] overflow-hidden mx-auto" id="stream">
             <!-- modal button & modal background -->
             <div class="w-full relative flex">
-                <img src="{{ asset('stream/assets/images/temp_img.png') }}" class="object-cover rounded-[50px]" alt="stream" />
-                <button class="absolute z-10 top-[50%] left-[50%] -mt-[25px] -ml-[25px] md:-mt-[44px] md:-ml-[44px]
-                    cursor-pointer" id="stream-preview">
-                    <img src="{{ asset('stream/assets/images/ic_play.svg') }}" class="w-8/12 md:w-full" alt="stream" />
+                <img src="{{ asset('stream/assets/images/temp_img.png') }}" class="object-cover rounded-[50px]"
+                    alt="stream" />
+                <button
+                    class="absolute z-10 top-[50%] left-[50%] -mt-[25px] -ml-[25px] md:-mt-[44px] md:-ml-[44px]
+                    cursor-pointer"
+                    id="stream-preview">
+                    <img src="{{ asset('stream/assets/images/ic_play.svg') }}" class="w-8/12 md:w-full"
+                        alt="stream" />
                 </button>
             </div>
         </section>
@@ -124,7 +128,8 @@
         </section>
 
         <!-- Brand partner -->
-        <section class="brands pb-[100px] pt-[50px] flex flex-wrap justify-center items-center gap-x-[70px] gap-y-10 px-2
+        <section
+            class="brands pb-[100px] pt-[50px] flex flex-wrap justify-center items-center gap-x-[70px] gap-y-10 px-2
             relative">
             <img src="{{ asset('stream/assets/images/logo-apple-tv.svg') }}" alt="stream" />
             <img src="{{ asset('stream/assets/images/logo-ipad-apple.svg') }}" alt="stream" />
@@ -151,14 +156,14 @@
         });
 
         // Open modal
-        $("#stream-preview").click(function () {
+        $("#stream-preview").click(function() {
             $("#openStream").removeClass('hidden')
             $("#stream-video").removeClass('hidden')
             $('body').addClass('overflow-y-hidden')
         })
 
         // Close modal
-        $("#openStream").click(function () {
+        $("#openStream").click(function() {
             $("#stream-video").addClass('hidden')
             $('body').removeClass('overflow-y-hidden')
             $("#openStream").addClass('hidden')
